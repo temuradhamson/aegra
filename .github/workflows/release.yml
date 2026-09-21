@@ -25,6 +25,7 @@ jobs:
   # ---------------------------------------------------------------
   build-api:
     if: inputs.package == 'aegra-api' || inputs.package == 'both'
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.get-version.outputs.version }}
@@ -61,6 +62,7 @@ jobs:
 
   build-cli:
     if: inputs.package == 'aegra-cli' || inputs.package == 'both'
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.get-version.outputs.version }}
@@ -106,6 +108,7 @@ jobs:
       always() &&
       needs.build-api.result == 'success' &&
       (inputs.package == 'aegra-api' || inputs.package == 'both')
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     environment: release-api
     permissions:
@@ -132,6 +135,7 @@ jobs:
       needs.build-cli.result == 'success' &&
       (inputs.package == 'aegra-cli' || inputs.package == 'both') &&
       (inputs.package == 'aegra-cli' || needs.publish-api.result == 'success')
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     environment: release-cli
     permissions:
@@ -159,6 +163,7 @@ jobs:
     if: |
       always() &&
       (needs.publish-api.result == 'success' || needs.publish-cli.result == 'success')
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     permissions:
       contents: write  # Required for creating releases
