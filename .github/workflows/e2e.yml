@@ -18,6 +18,7 @@ env:
 jobs:
   e2e-dev-mode:
     name: E2E (Dev Mode — LocalExecutor)
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -117,6 +118,7 @@ jobs:
 
   e2e-prod-mode:
     name: E2E (Prod Mode — WorkerExecutor + Redis)
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -229,6 +231,7 @@ jobs:
 
   e2e-auth:
     name: E2E (Auth Enabled)
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     permissions:
       contents: read
